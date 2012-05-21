@@ -38,7 +38,13 @@
     },
     "description": "A set of classes that allow you to extract information from a database schema, compare database schemas and apply a set of changes to a database schema.",
     "homepage": "https://github.com/zetacomponents",
-    "license": "apache2",
+    "license": "Apache-2.0",
     "name": "zetacomponents/database-schema",
-    "type": "library"
+    "type": "library",
+        "require": {
+            "zetacomponents/base": "*"
+        },
+        "require-dev": {
+            "zetacomponents/unit-test": "*"
+        }
 }
