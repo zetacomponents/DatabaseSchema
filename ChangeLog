@@ -1,4 +1,4 @@
-1.5 - Saturday 20 September 2014
+1.5 - Saturday 27 September 2014
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Fixed: Adjusted source headers of Execution to Apache license.
@@ -6,6 +6,7 @@
 - Fixed: Updated copyright dates in NOTICE files.
 - Remove custom test runner.
 - Fix autoloading with composer
+
 
 1.4.4 - Monday 22 March 2010
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
