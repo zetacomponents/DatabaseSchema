@@ -56,7 +56,7 @@ class ezcDatabaseSchemaOracleTest extends ezcDatabaseSchemaGenericTest
         $this->tempDir = $this->createTempDir( 'ezcDatabaseOracleTest' );
 
         $tables = $this->db->query( "SELECT table_name FROM user_tables" )->fetchAll();
-        array_walk( $tables, create_function( '&$item,$key', '$item = $item[0];' ) );
+        array_walk( $tables, function ( &$item ) { $item = $item[0]; } );
 
         foreach ( $tables as $tableName )
         {
@@ -64,7 +64,7 @@ class ezcDatabaseSchemaOracleTest extends ezcDatabaseSchemaGenericTest
         }
 
         $sequences = $this->db->query( "SELECT sequence_name FROM user_sequences" )->fetchAll();
-        array_walk( $sequences, create_function( '&$item,$key', '$item = $item[0];' ) );
+        array_walk( $sequences, function ( &$item ) { $item = $item[0]; } );
 
         foreach ( $sequences as $sequenceName )
         {

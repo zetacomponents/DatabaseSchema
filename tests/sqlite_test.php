@@ -51,7 +51,7 @@ class ezcDatabaseSchemaSqliteTest extends ezcDatabaseSchemaGenericTest
         ORDER BY name;";
 
         $tables = $this->db->query( $queryStr )->fetchAll();
-        array_walk( $tables, create_function( '&$item,$key', '$item = $item[0];' ) );
+        array_walk( $tables, function ( &$item ) { $item = $item[0]; } );
 
         foreach ( $tables as $tableName )
         {

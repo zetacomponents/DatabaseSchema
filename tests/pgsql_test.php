@@ -45,7 +45,7 @@ class ezcDatabaseSchemaPgsqlTest extends ezcDatabaseSchemaGenericTest
             $this->tempDir = $this->createTempDir( 'ezcDatabasePgSqlTest' );
 
             $tables = $this->db->query( "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'" )->fetchAll();
-            array_walk( $tables, create_function( '&$item,$key', '$item = $item[0];' ) );
+            array_walk( $tables, function ( &$item ) { $item = $item[0]; } );
 
             foreach ( $tables as $tableName )
             {
