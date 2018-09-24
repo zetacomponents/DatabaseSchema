@@ -75,7 +75,7 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
             if ( $result[0]['count'] == 1 )
             {
                 $sequences = $db->query( "SELECT sequence_name FROM user_sequences" )->fetchAll();
-                array_walk( $sequences, create_function( '&$item,$key', '$item = $item[0];' ) );
+                array_walk( $sequences, function ( &$item ) { $item = $item[0]; } );
                 foreach ( $sequences as $sequenceName )
                 {
                     // try to drop sequences related to dropped table.

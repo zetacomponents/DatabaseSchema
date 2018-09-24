@@ -74,7 +74,7 @@ abstract class ezcDbSchemaCommonSqlReader implements ezcDbSchemaDbReader
     protected function processSchema( array $tables )
     {
         $schemaDefinition = array();
-        array_walk( $tables, create_function( '&$item,$key', '$item = $item[0];' ) );
+        array_walk( $tables, function ( &$item, $key ) { $item = $item[0]; } );
 
         // strip out the prefix and only return tables with the prefix set.
         $prefix = ezcDbSchema::$options->tableNamePrefix;
