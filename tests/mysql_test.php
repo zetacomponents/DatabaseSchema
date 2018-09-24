@@ -56,7 +56,7 @@ class ezcDatabaseSchemaMySqlTest extends ezcDatabaseSchemaGenericTest
         $this->tempDir = $this->createTempDir( 'ezcDatabaseMySqlTest' );
 
         $tables = $this->db->query( "SHOW TABLES" )->fetchAll();
-        array_walk( $tables, create_function( '&$item,$key', '$item = $item[0];' ) );
+        array_walk( $tables, function ( &$item ) { $item = $item[0]; } );
 
         foreach ( $tables as $tableName )
         {
