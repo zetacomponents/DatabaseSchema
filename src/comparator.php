@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -98,7 +98,7 @@ class ezcDbSchemaComparator
      *
      * @return bool|ezcDbSchemaTableDiff
      */
-    private static final function diffTable( ezcDbSchemaTable $table1, ezcDbSchemaTable $table2 )
+    private static function diffTable( ezcDbSchemaTable $table1, ezcDbSchemaTable $table2 )
     {
         $changes = 0;
         $tableDifferences = new ezcDbSchemaTableDiff();
@@ -184,7 +184,7 @@ class ezcDbSchemaComparator
      *
      * @return bool|ezcDbSchemaField
      */
-    private static final function diffField( ezcDbSchemaField $field1, ezcDbSchemaField $field2 )
+    private static function diffField( ezcDbSchemaField $field1, ezcDbSchemaField $field2 )
     {
         /* Type is always available */
         if ( $field1->type != $field2->type )
@@ -214,7 +214,7 @@ class ezcDbSchemaComparator
      * @param ezcDbSchemaIndex $index2
      * @return bool|ezcDbSchemaIndex
      */
-    private static final function diffIndex( ezcDbSchemaIndex $index1, ezcDbSchemaIndex $index2 )
+    private static function diffIndex( ezcDbSchemaIndex $index1, ezcDbSchemaIndex $index2 )
     {
         $testFields = array( 'primary', 'unique' );
         foreach ( $testFields as $property )

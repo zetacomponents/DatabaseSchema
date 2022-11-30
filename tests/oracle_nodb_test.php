@@ -82,7 +82,7 @@ class ezcDatabaseSchemaOracleNoDbTest extends ezcTestCase
 
     static public function suite()
     {
-        return new PHPUnit_Framework_TestSuite( 'ezcDatabaseSchemaOracleNoDbTest' );
+        return new \PHPUnit\Framework\TestSuite( 'ezcDatabaseSchemaOracleNoDbTest' );
     }
 }
 ?>

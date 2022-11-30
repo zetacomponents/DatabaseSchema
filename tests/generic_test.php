@@ -8,9 +8,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -31,7 +31,7 @@
  */
 class ezcDatabaseSchemaGenericTest extends ezcTestCase
 {
-    public function tearDown()
+    public function tearDown() : void
     {
         $optionsWithoutPrefix = new ezcDbSchemaOptions;
         $optionsWithoutPrefix->tableNamePrefix = '';
@@ -117,7 +117,7 @@ class ezcDatabaseSchemaGenericTest extends ezcTestCase
         $fileNameOrig = realpath( $this->testFilesDir . 'webbuilder.schema.xml' );
         $schema = ezcDbSchema::createFromFile( 'xml', $fileNameOrig );
         $schema->writeToDb( $this->db );
-        
+
         $newSchema = ezcDbSchema::createFromDb( $this->db );
         $newDDL1 = $newSchema->convertToDDL( $this->db );
 
@@ -138,7 +138,7 @@ class ezcDatabaseSchemaGenericTest extends ezcTestCase
         $fileNameOrig = realpath( $this->testFilesDir . 'webbuilder.schema.xml' );
         $schema = ezcDbSchema::createFromFile( 'xml', $fileNameOrig );
         $schema->writeToDb( $this->db );
-        
+
         $newSchema = ezcDbSchema::createFromDb( $this->db );
         $newDDL1 = $newSchema->convertToDDL( $this->db->getName() );
 
@@ -159,7 +159,7 @@ class ezcDatabaseSchemaGenericTest extends ezcTestCase
         $fileNameOrig = realpath( $this->testFilesDir . 'webbuilder.schema.xml' );
         $schema = ezcDbSchema::createFromFile( 'xml', $fileNameOrig );
         $schema->writeToDb( $this->db );
-        
+
         $newSchema = ezcDbSchema::createFromDb( $this->db );
         try
         {
@@ -177,7 +177,7 @@ class ezcDatabaseSchemaGenericTest extends ezcTestCase
         $fileNameOrig = realpath( $this->testFilesDir . 'webbuilder.schema.xml' );
         $schema = ezcDbSchema::createFromFile( 'xml', $fileNameOrig );
         $schema->writeToDb( $this->db );
-        
+
         $newSchema = ezcDbSchema::createFromDb( $this->db );
         try
         {
@@ -252,7 +252,7 @@ class ezcDatabaseSchemaGenericTest extends ezcTestCase
         $schema->writeToDb( $this->db );
         $newSchema = ezcDbSchema::createFromDb( $this->db );
         $tables = $newSchema->getSchema();
-        
+
         $tableDebugger = $tables['debugger'];
         $expected = new ezcDbSchemaTable(
             array(
@@ -345,10 +345,10 @@ class ezcDatabaseSchemaGenericTest extends ezcTestCase
         $fileNameOrig = realpath( $this->testFilesDir . 'DataTypesTest.xml' );
         $schema = ezcDbSchema::createFromFile( 'xml', $fileNameOrig );
         $schema->writeToDb( $this->db );
-        
+
         $schema = ezcDbSchema::createFromDb( $this->db );
         $schema->writeToFile( 'xml', $this->getTempDir() . '/' . 'DataTypesTest.dump.xml' );
-        
+
         $file_orig = file_get_contents( $fileNameOrig );
         $file_dump = file_get_contents(  $this->getTempDir() . '/' . 'DataTypesTest.dump.xml' );
         self::assertEquals( $file_orig, $file_dump );

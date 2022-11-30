@@ -8,9 +8,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -31,13 +31,16 @@
  */
 class ezcDatabaseSchemaPhpArrayDiffTest extends ezcTestCase
 {
-    protected function setUp()
+    protected $testFilesDir;
+    protected $tempDir;
+
+    protected function setUp() : void
     {
         $this->testFilesDir = dirname( __FILE__ ) . '/testfiles/';
         $this->tempDir = $this->createTempDir( 'ezcDatabasePhpArrayTest' );
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         $this->removeTempDir();
     }
@@ -113,7 +116,7 @@ class ezcDatabaseSchemaPhpArrayDiffTest extends ezcTestCase
 
     public function testBrokenSchema()
     {
-        $fileName = $this->testFilesDir . 'broken_schema.php'; 
+        $fileName = $this->testFilesDir . 'broken_schema.php';
         try
         {
             ezcDbSchema::createFromFile( 'array', $fileName );
@@ -140,7 +143,7 @@ class ezcDatabaseSchemaPhpArrayDiffTest extends ezcTestCase
 
     public function testWrite1()
     {
-        $fileName = $this->tempDir . '/php_array_write_result.php'; 
+        $fileName = $this->tempDir . '/php_array_write_result.php';
         $schema = self::getSchemaDiff();
         $schema->writeToFile( 'array', $fileName );
         $newSchema = ezcDbSchemaDiff::createFromFile( 'array', $fileName );
@@ -149,7 +152,7 @@ class ezcDatabaseSchemaPhpArrayDiffTest extends ezcTestCase
 
     public function testWriteUnwritableDir()
     {
-        $fileName = $this->tempDir . '/bogus/php_array_write_result.php'; 
+        $fileName = $this->tempDir . '/bogus/php_array_write_result.php';
         $schema = self::getSchemaDiff();
         try
         {
@@ -164,7 +167,7 @@ class ezcDatabaseSchemaPhpArrayDiffTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( 'ezcDatabaseSchemaPhpArrayDiffTest' );
+        return new \PHPUnit\Framework\TestSuite( 'ezcDatabaseSchemaPhpArrayDiffTest' );
     }
 }
 ?>

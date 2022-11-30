@@ -8,9 +8,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -39,7 +39,7 @@ class ezcDatabaseSchemaConversionTest extends ezcTestCase
     /**
      * "constructor"
      */
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->referenceFile = dirname( __FILE__ ) . '/data/schema.dba';
         $this->generatedFile = dirname( __FILE__ ) . '/data/schema-generated.dba';
@@ -49,7 +49,7 @@ class ezcDatabaseSchemaConversionTest extends ezcTestCase
     /**
      * "destructor"
      */
-    protected function tearDown()
+    protected function tearDown() : void
     {
         @unlink( $this->generatedFile );
         @unlink( $this->deltaFile );
@@ -87,7 +87,7 @@ class ezcDatabaseSchemaConversionTest extends ezcTestCase
 
     public static function suite()
     {
-         return new PHPUnit_Framework_TestSuite( 'ezcDatabaseSchemaConversionTest' );
+         return new \PHPUnit\Framework\TestSuite( 'ezcDatabaseSchemaConversionTest' );
     }
 
 }

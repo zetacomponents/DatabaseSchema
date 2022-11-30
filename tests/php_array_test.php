@@ -8,9 +8,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -31,13 +31,16 @@
  */
 class ezcDatabaseSchemaPhpArrayTest extends ezcTestCase
 {
-    protected function setUp()
+    protected $testFilesDir;
+    protected $tempDir;
+
+    protected function setUp() : void
     {
         $this->testFilesDir = dirname( __FILE__ ) . '/testfiles/';
         $this->tempDir = $this->createTempDir( 'ezcDatabasePhpArrayTest' );
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         $this->removeTempDir();
     }
@@ -76,7 +79,7 @@ class ezcDatabaseSchemaPhpArrayTest extends ezcTestCase
 
     public function testBrokenSchema()
     {
-        $fileName = $this->testFilesDir . 'broken_schema.php'; 
+        $fileName = $this->testFilesDir . 'broken_schema.php';
         try
         {
             ezcDbSchema::createFromFile( 'array', $fileName );
@@ -103,7 +106,7 @@ class ezcDatabaseSchemaPhpArrayTest extends ezcTestCase
 
     public function testPhpArray()
     {
-        $fileName = $this->tempDir . '/php_array_write_result.php'; 
+        $fileName = $this->tempDir . '/php_array_write_result.php';
         $schema = new ezcDbSchema( self::getSchema() );
         $schema->writeToFile( 'array', $fileName );
         $newSchema = ezcDbSchema::createFromFile( 'array', $fileName );
@@ -112,7 +115,7 @@ class ezcDatabaseSchemaPhpArrayTest extends ezcTestCase
 
     public function testPhpArrayUnwritableDir()
     {
-        $fileName = $this->tempDir . '/bogus/php_array_write_result.php'; 
+        $fileName = $this->tempDir . '/bogus/php_array_write_result.php';
         $schema = new ezcDbSchema( self::getSchema() );
         try
         {
@@ -127,7 +130,7 @@ class ezcDatabaseSchemaPhpArrayTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( 'ezcDatabaseSchemaPhpArrayTest' );
+        return new \PHPUnit\Framework\TestSuite( 'ezcDatabaseSchemaPhpArrayTest' );
     }
 }
 ?>

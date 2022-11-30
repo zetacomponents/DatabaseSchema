@@ -8,9 +8,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -31,13 +31,16 @@
  */
 class ezcDatabaseSchemaXmlDiffTest extends ezcTestCase
 {
-    protected function setUp()
+    protected $testFilesDir;
+    protected $tempDir;
+
+    protected function setUp() : void
     {
         $this->testFilesDir = dirname( __FILE__ ) . '/testfiles/';
         $this->tempDir = $this->createTempDir( 'ezcDatabaseXmlTest' );
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         $this->removeTempDir();
     }
@@ -141,7 +144,7 @@ class ezcDatabaseSchemaXmlDiffTest extends ezcTestCase
 
     public function testWrite1()
     {
-        $fileName = $this->tempDir . '/xml_write_result.xml'; 
+        $fileName = $this->tempDir . '/xml_write_result.xml';
         $schema = self::getSchemaDiff();
         $schema->writeToFile( 'xml', $fileName );
         $newSchema = ezcDbSchemaDiff::createFromFile( 'xml', $fileName );
@@ -150,7 +153,7 @@ class ezcDatabaseSchemaXmlDiffTest extends ezcTestCase
 
     public function testWriteUnwriteableDir()
     {
-        $fileName = $this->tempDir . '/bogus/xml_write_result.xml'; 
+        $fileName = $this->tempDir . '/bogus/xml_write_result.xml';
         $schema = self::getSchemaDiff();
         try
         {
@@ -165,7 +168,7 @@ class ezcDatabaseSchemaXmlDiffTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( 'ezcDatabaseSchemaXmlDiffTest' );
+        return new \PHPUnit\Framework\TestSuite( 'ezcDatabaseSchemaXmlDiffTest' );
     }
 }
 ?>

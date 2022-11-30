@@ -8,9 +8,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -31,7 +31,7 @@
  */
 class ezcDatabaseSchemaValidatorTest extends ezcTestCase
 {
-    protected function setUp()
+    protected function setUp() : void
     {
         try
         {
@@ -57,7 +57,7 @@ class ezcDatabaseSchemaValidatorTest extends ezcTestCase
                         'index1' => new ezcDbSchemaIndex( array ( 'field1' => new ezcDbSchemaIndexField() ) ),
                         'index2' => new ezcDbSchemaIndex( array ( 'field3' => new ezcDbSchemaIndexField() ) ),
                         'index3' => new ezcDbSchemaIndex( array (
-                            'field2' => new ezcDbSchemaIndexField(), 
+                            'field2' => new ezcDbSchemaIndexField(),
                             'field3' => new ezcDbSchemaIndexField()
                         ) ),
                     )
@@ -209,7 +209,7 @@ class ezcDatabaseSchemaValidatorTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( 'ezcDatabaseSchemaValidatorTest' );
+        return new \PHPUnit\Framework\TestSuite( 'ezcDatabaseSchemaValidatorTest' );
     }
 }
 ?>

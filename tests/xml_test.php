@@ -8,9 +8,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -31,13 +31,16 @@
  */
 class ezcDatabaseSchemaXmlTest extends ezcTestCase
 {
-    protected function setUp()
+    protected $testFilesDir;
+    protected $tempDir;
+
+    protected function setUp() : void
     {
         $this->testFilesDir = dirname( __FILE__ ) . '/testfiles/';
         $this->tempDir = $this->createTempDir( 'ezcDatabaseXmlTest' );
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         $this->removeTempDir();
     }
@@ -103,7 +106,7 @@ class ezcDatabaseSchemaXmlTest extends ezcTestCase
 
     public function testXml()
     {
-        $fileName = $this->tempDir . '/xml_write_result.xml'; 
+        $fileName = $this->tempDir . '/xml_write_result.xml';
         $schema = new ezcDbSchema( self::getSchema() );
         $schema->writeToFile( 'xml', $fileName );
         $newSchema = ezcDbSchema::createFromFile( 'xml', $fileName );
@@ -112,7 +115,7 @@ class ezcDatabaseSchemaXmlTest extends ezcTestCase
 
     public function testXmlToUnwriteableDir()
     {
-        $fileName = $this->tempDir . '/bogus/xml_write_result.xml'; 
+        $fileName = $this->tempDir . '/bogus/xml_write_result.xml';
         $schema = new ezcDbSchema( self::getSchema() );
         try
         {
@@ -139,7 +142,7 @@ class ezcDatabaseSchemaXmlTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( 'ezcDatabaseSchemaXmlTest' );
+        return new \PHPUnit\Framework\TestSuite( 'ezcDatabaseSchemaXmlTest' );
     }
 }
 ?>

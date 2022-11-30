@@ -8,9 +8,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -32,7 +32,7 @@ require_once 'generic_diff_test.php';
  */
 class ezcDatabaseSchemaSqliteDiffTest extends ezcDatabaseSchemaGenericDiffTest
 {
-    protected function setUp()
+    protected function setUp() : void
     {
         try
         {
@@ -50,7 +50,7 @@ class ezcDatabaseSchemaSqliteDiffTest extends ezcDatabaseSchemaGenericDiffTest
 
     protected function resetDb()
     {
-        $queryStr = "SELECT name FROM sqlite_master WHERE type='table' 
+        $queryStr = "SELECT name FROM sqlite_master WHERE type='table'
         UNION ALL SELECT name FROM sqlite_temp_master WHERE type='table'
         ORDER BY name;";
 
@@ -59,7 +59,7 @@ class ezcDatabaseSchemaSqliteDiffTest extends ezcDatabaseSchemaGenericDiffTest
 
         foreach ( $tables as $tableName )
         {
-            if ($tableName == 'sqlite_sequence') // clear sqlite_sequence table as it 
+            if ($tableName == 'sqlite_sequence') // clear sqlite_sequence table as it
                                                  // automatically created by SQLite and couldn't be droped
             {
                 $this->db->query( "DELETE FROM sqlite_sequence" );
@@ -104,7 +104,7 @@ class ezcDatabaseSchemaSqliteDiffTest extends ezcDatabaseSchemaGenericDiffTest
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( 'ezcDatabaseSchemaSqliteDiffTest' );
+        return new \PHPUnit\Framework\TestSuite( 'ezcDatabaseSchemaSqliteDiffTest' );
     }
 }
 ?>

@@ -8,9 +8,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -31,13 +31,16 @@
  */
 class ezcDatabaseSchemaPersistentTest extends ezcTestCase
 {
-    protected function setUp()
+    protected $testFilesDir;
+    protected $tempDir;
+
+    protected function setUp() : void
     {
         $this->testFilesDir = dirname( __FILE__ ) . '/testfiles';
         $this->tempDir = $this->createTempDir( 'ezcDatabasePersistentTest' );
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         $this->removeTempDir();
     }
@@ -64,7 +67,7 @@ class ezcDatabaseSchemaPersistentTest extends ezcTestCase
             {
                 $this->fail( "PersistentObject definition '{$entry}' not created!" );
             }
-            $this->assertEquals( 
+            $this->assertEquals(
                 file_get_contents( $this->testFilesDir . '/persistent/' . $entry ),
                 file_get_contents( $this->tempDir . '/' . $entry ),
                 "PersistentObject definition for file '{$entry}' differs"
@@ -105,7 +108,7 @@ class ezcDatabaseSchemaPersistentTest extends ezcTestCase
     {
         $schema = ezcDbSchema::createFromFile( 'xml', $this->testFilesDir . '/bug-12937-persitent-string-id.xml' );
         $schema->writeToFile( 'persistent', $this->tempDir );
-        
+
         $this->assertEquals(
             require $this->tempDir . '/liveuser_translations_string_id.php',
             require $this->testFilesDir . '/persistent_bug_12937/liveuser_translations_string_id.php'
@@ -114,7 +117,7 @@ class ezcDatabaseSchemaPersistentTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( 'ezcDatabaseSchemaPersistentTest' );
+        return new \PHPUnit\Framework\TestSuite( 'ezcDatabaseSchemaPersistentTest' );
     }
 }
 ?>
