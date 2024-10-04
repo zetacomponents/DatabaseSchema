@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -52,12 +52,12 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
     /**
      * Checks if query allowed.
      *
-     * Perform testing if table exist for DROP TABLE query 
+     * Perform testing if table exist for DROP TABLE query
      * to avoid stoping execution while try to drop not existent table.
-     * 
+     *
      * @param ezcDbHandler $db
      * @param string       $query
-     * 
+     *
      * @return boolean false if query should not be executed.
      */
     public function isQueryAllowed( ezcDbHandler $db, $query )
@@ -134,7 +134,7 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
                 {
                     $db->commit();
                     $db->beginTransaction();
-                    if ( preg_match ( "/ALTER TABLE (.*) MODIFY (.*?) (.*) AUTO_INCREMENT/" , $query, $matches ) ) 
+                    if ( preg_match ( "/ALTER TABLE (.*) MODIFY (.*?) (.*) AUTO_INCREMENT/" , $query, $matches ) )
                     {
                         $tableName = trim( $matches[1], '"' );
                         $autoIncrementFieldName = trim( $matches[2], '"' );
@@ -152,7 +152,7 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
     /**
     * Performs changing field in Oracle table.
     * (workaround for "ALTER TABLE table MODIFY field fieldType AUTO_INCREMENT " that not alowed in Oracle ).
-    * 
+    *
     * @param ezcDbHandler    $db
     * @param string          $tableName
     * @param string          $autoIncrementFieldName
@@ -162,10 +162,10 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
     {
         // fetching field info from Oracle, getting column position of autoincrement field
 
-        // @apichange This code piece would become orphan, with the new 
+        // @apichange This code piece would become orphan, with the new
         // implementation. We still need it to drop the old sequences.
         // Remove until --END-- to not take care of them.
-        $resultArray = $db->query( "SELECT   a.column_name AS field, " .    
+        $resultArray = $db->query( "SELECT   a.column_name AS field, " .
                                    "         a.column_id AS field_pos " .
                                    "FROM     user_tab_columns a " .
                                    "WHERE    a.table_name = '{$tableName}' AND a.column_name = '{$autoIncrementFieldName}'" .
@@ -227,7 +227,7 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
      *
      * @return array(string)
      */
-    public function convertDiffToDDL( ezcDbSchemaDiff $dbSchemaDiff, ezcDbHandler $db = null )
+    public function convertDiffToDDL( ezcDbSchemaDiff $dbSchemaDiff, ?ezcDbHandler $db = null )
     {
         $this->diffSchema = $dbSchemaDiff;
 
@@ -235,7 +235,7 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
         $this->queries = array();
         $this->context = array();
 
-        // Find sequences which require explicit drop statesments, see bug 
+        // Find sequences which require explicit drop statesments, see bug
         // #16222
         if ( $db !== null )
         {
@@ -249,20 +249,20 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
     /**
      * Generate additional drop sequence statements
      *
-     * Some sequences might not be dropped automatically, this method generates 
+     * Some sequences might not be dropped automatically, this method generates
      * additional DROP SEQUENCE queries for those.
      *
-     * Since Oracle only allows sequence identifiers up to 30 characters 
-     * sequences for long table / column names may be shortened. In this case 
-     * the sequence name does not started with the table name any more, thus 
+     * Since Oracle only allows sequence identifiers up to 30 characters
+     * sequences for long table / column names may be shortened. In this case
+     * the sequence name does not started with the table name any more, thus
      * does not get dropped together with the table automatically.
      *
-     * This method requires a DB connection to check which sequences have been 
-     * defined in the database, because the information about fields is not 
+     * This method requires a DB connection to check which sequences have been
+     * defined in the database, because the information about fields is not
      * available otherwise.
-     * 
-     * @param ezcDbSchemaDiff $dbSchemaDiff 
-     * @param ezcDbHandler $db 
+     *
+     * @param ezcDbSchemaDiff $dbSchemaDiff
+     * @param ezcDbHandler $db
      * @return void
      */
     protected function generateAdditionalDropSequenceStatements( ezcDbSchemaDiff $dbSchemaDiff, ezcDbHandler $db )
@@ -311,7 +311,7 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
             if ( $fieldDefinition->length !== false && $fieldDefinition->length !== 0 )
             {
                 $typeAddition = "({$fieldDefinition->length})";
-            } 
+            }
             else
             {
                 $typeAddition = "(4000)"; // default length for varchar2 in Oracle
@@ -336,12 +336,12 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
     }
 
     /**
-     * Adds a "create table" query for the table $tableName with 
+     * Adds a "create table" query for the table $tableName with
      * definition $tableDefinition to the internal list of queries.
-     * 
+     *
      * Adds additional CREATE queries for sequences and triggers
      * to implement autoincrement fields that not supported in Oracle directly.
-     * 
+     *
      * @param string           $tableName
      * @param ezcDbSchemaTable $tableDefinition
      */
@@ -554,7 +554,7 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
 
         $this->queries[] = $sql;
     }
-    
+
     /**
      * Adds a "alter table" query to remote the index $indexName from the table $tableName to the internal list of queries.
      *
