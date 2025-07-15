@@ -29,8 +29,17 @@
  * @package DatabaseSchema
  * @subpackage Tests
  */
-class ezcDatabaseSchemaGenericTest extends ezcTestCase
+class ezcDatabaseSchemaGenericTester extends ezcTestCase
 {
+    public ezcDbHandler $db;
+    public string $tempDir;
+    public string $testFilesDir;
+
+    protected function setUp() : void
+    {
+        $this->markTestIncomplete( "This is a base-test class." );
+    }
+
     public function tearDown() : void
     {
         $optionsWithoutPrefix = new ezcDbSchemaOptions;

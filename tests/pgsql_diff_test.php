@@ -25,12 +25,12 @@
  * @subpackage Tests
  */
 
-require_once 'generic_diff_test.php';
+require_once 'generic_diff_tester.php';
 /**
  * @package DatabaseSchema
  * @subpackage Tests
  */
-class ezcDatabaseSchemaPgSqlDiffTest extends ezcDatabaseSchemaGenericDiffTest
+class ezcDatabaseSchemaPgSqlDiffTest extends ezcDatabaseSchemaGenericDiffTester
 {
     protected function resetDb()
     {
@@ -43,13 +43,22 @@ class ezcDatabaseSchemaPgSqlDiffTest extends ezcDatabaseSchemaGenericDiffTest
         }
     }
 
-    public function setUp() : void
+    protected function setUp() : void
     {
         try
         {
             $this->db = ezcDbInstance::get();
         }
         catch ( Exception $e )
+        {
+            $this->markTestSkipped( "No Database connection available" );
+        }
+        if ( $this->db->getName() !== 'pgsql' )
+        {
+            $this->markTestSkipped( "We are not testing with PostGreSql" );
+        }
+
+        if ( !( $this->db instanceof ezcDbHandlerPgsql ) )
         {
             $this->markTestSkipped();
         }

@@ -25,14 +25,14 @@
  * @subpackage Tests
  */
 
-require_once 'generic_test.php';
+require_once 'generic_tester.php';
 /**
  * @package DatabaseSchema
  * @subpackage Tests
  */
-class ezcDatabaseSchemaSqliteTest extends ezcDatabaseSchemaGenericTest
+class ezcDatabaseSchemaSqliteTest extends ezcDatabaseSchemaGenericTester
 {
-    public function setUp() : void
+    protected function setUp() : void
     {
         try
         {

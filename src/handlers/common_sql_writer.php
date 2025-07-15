@@ -55,6 +55,13 @@ abstract class ezcDbSchemaCommonSqlWriter implements ezcDbSchemaDbWriter, ezcDbS
     protected $schema;
 
     /**
+     * Stores the difference schema definition
+     *
+     * @var ezcDbSchemaDiff
+     */
+    protected $diffSchema;
+
+    /**
      * Returns what type of schema writer this class implements.
      *
      * This method always returns ezcDbSchema::DATABASE

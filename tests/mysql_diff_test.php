@@ -25,12 +25,12 @@
  * @subpackage Tests
  */
 
-require_once 'generic_diff_test.php';
+require_once 'generic_diff_tester.php';
 /**
  * @package DatabaseSchema
  * @subpackage Tests
  */
-class ezcDatabaseSchemaMysqlDiffTest extends ezcDatabaseSchemaGenericDiffTest
+class ezcDatabaseSchemaMysqlDiffTest extends ezcDatabaseSchemaGenericDiffTester
 {
     protected function setUp() : void
     {
