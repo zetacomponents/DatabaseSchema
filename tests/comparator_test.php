@@ -31,6 +31,8 @@
  */
 class ezcDatabaseSchemaComparatorTest extends ezcTestCase
 {
+    protected ezcDbHandler $db;
+
     protected function setUp() : void
     {
         try

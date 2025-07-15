@@ -25,14 +25,14 @@
  * @subpackage Tests
  */
 
-require_once 'generic_test.php';
+require_once 'generic_tester.php';
 /**
  * @package DatabaseSchema
  * @subpackage Tests
  */
-class ezcDatabaseSchemaPgsqlTest extends ezcDatabaseSchemaGenericTest
+class ezcDatabaseSchemaPgsqlTest extends ezcDatabaseSchemaGenericTester
 {
-    public function setUp() : void
+    protected function setUp() : void
     {
         try
         {
@@ -45,7 +45,7 @@ class ezcDatabaseSchemaPgsqlTest extends ezcDatabaseSchemaGenericTest
             $this->tempDir = $this->createTempDir( 'ezcDatabasePgSqlTest' );
 
             $tables = $this->db->query( "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'" )->fetchAll();
-            array_walk( $tables, create_function( '&$item,$key', '$item = $item[0];' ) );
+            array_walk( $tables, function ( &$item ) { $item = $item[0]; } );
 
             foreach ( $tables as $tableName )
             {

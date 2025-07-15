@@ -25,17 +25,17 @@
  * @subpackage Tests
  */
 
-require_once 'generic_diff_test.php';
+require_once 'generic_diff_tester.php';
 /**
  * @package DatabaseSchema
  * @subpackage Tests
  */
-class ezcDatabaseSchemaOracleDiffTest extends ezcDatabaseSchemaGenericDiffTest
+class ezcDatabaseSchemaOracleDiffTest extends ezcDatabaseSchemaGenericDiffTester
 {
     protected function resetDb()
     {
         $tables = $this->db->query( "SELECT table_name FROM user_tables" )->fetchAll();
-        array_walk( $tables, create_function( '&$item,$key', '$item = $item[0];' ) );
+        array_walk( $tables, function ( &$item ) { $item = $item[0]; } );
 
         foreach ( $tables as $tableName )
         {
@@ -50,6 +50,15 @@ class ezcDatabaseSchemaOracleDiffTest extends ezcDatabaseSchemaGenericDiffTest
             $this->db = ezcDbInstance::get();
         }
         catch ( Exception $e )
+        {
+            $this->markTestSkipped();
+        }
+        if ( $this->db->getName() !== 'oracle' )
+        {
+            $this->markTestSkipped( "Skipping tests for Oracle" );
+        }
+
+        if ( !( $this->db instanceof ezcDbHandlerOracle ) )
         {
             $this->markTestSkipped();
         }

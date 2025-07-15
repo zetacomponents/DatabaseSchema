@@ -25,12 +25,12 @@
  * @subpackage Tests
  */
 
-require_once 'generic_test.php';
+require_once 'generic_tester.php';
 /**
  * @package DatabaseSchema
  * @subpackage Tests
  */
-class ezcDatabaseSchemaMySqlTest extends ezcDatabaseSchemaGenericTest
+class ezcDatabaseSchemaMySqlTest extends ezcDatabaseSchemaGenericTester
 {
     protected function setUp() : void
     {
@@ -56,7 +56,7 @@ class ezcDatabaseSchemaMySqlTest extends ezcDatabaseSchemaGenericTest
         $this->tempDir = $this->createTempDir( 'ezcDatabaseMySqlTest' );
 
         $tables = $this->db->query( "SHOW TABLES" )->fetchAll();
-        array_walk( $tables, create_function( '&$item,$key', '$item = $item[0];' ) );
+        array_walk( $tables, function ( &$item ) { $item = $item[0]; } );
 
         foreach ( $tables as $tableName )
         {

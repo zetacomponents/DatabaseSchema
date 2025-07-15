@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -33,6 +33,8 @@
  */
 abstract class ezcDbSchemaCommonSqlReader implements ezcDbSchemaDbReader
 {
+    protected ezcDbHandler $db;
+
     /**
      * Returns an ezcDbSchema created from the database schema in the database referenced by $db
      *
@@ -74,7 +76,7 @@ abstract class ezcDbSchemaCommonSqlReader implements ezcDbSchemaDbReader
     protected function processSchema( array $tables )
     {
         $schemaDefinition = array();
-        array_walk( $tables, create_function( '&$item,$key', '$item = $item[0];' ) );
+        array_walk( $tables, function ( &$item, $key ) { $item = $item[0]; } );
 
         // strip out the prefix and only return tables with the prefix set.
         $prefix = ezcDbSchema::$options->tableNamePrefix;

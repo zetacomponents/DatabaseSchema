@@ -29,10 +29,16 @@
  * @package DatabaseSchema
  * @subpackage Tests
  */
-class ezcDatabaseSchemaGenericDiffTest extends ezcTestCase
+class ezcDatabaseSchemaGenericDiffTester extends ezcTestCase
 {
+    public ezcDbHandler $db;
     protected $testFilesDir;
     protected $tempDir;
+
+    protected function setUp() : void
+    {
+        $this->markTestIncomplete( "This is a base-test class." );
+    }
 
     public function tearDown() : void
     {

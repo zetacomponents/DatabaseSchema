@@ -31,6 +31,8 @@
  */
 class ezcDatabaseSchemaValidatorTest extends ezcTestCase
 {
+    private ezcDbHandler $db;
+
     protected function setUp() : void
     {
         try
